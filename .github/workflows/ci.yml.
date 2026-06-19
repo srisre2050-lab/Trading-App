@@ -2,9 +2,9 @@ name: CI Regression Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main", "X" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main", "X" ]
 
 jobs:
   test-and-validate:
