@@ -3,9 +3,9 @@ name: CI Regression Pipeline
 # Trigger this pipeline on every push or Pull Request to the main branch
 on:
   push:
-    branches: [ main ]
+    branches: [ "main","X" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main","X" ]
 
 jobs:
   test-and-validate:
