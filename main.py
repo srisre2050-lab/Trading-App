@@ -56,3 +56,5 @@ def buy_security(ticker: str, quantity: int):
             "remaining_balance": ACCOUNT_BALANCE
         }
     )
+    # Trigger CI pipeline force scan
+
