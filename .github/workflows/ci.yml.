@@ -1,28 +1,24 @@
 name: CI Regression Pipeline
 
-# Trigger this pipeline on every push or Pull Request to the main branch
 on:
   push:
-    branches: [ "X" ]
+    branches: [ "main", "X" ]
   pull_request:
-    branches: [ "X" ]
+    branches: [ "main", "X" ]
 
 jobs:
   test-and-validate:
-    runs-on: ubuntu-latest  # Fix: Changed from runs-back-on
+    runs-on: ubuntu-latest
 
     steps:
-    # 1. Pull down your code from GitHub into the container
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    # 2. Set up a secure, specific version of Python
     - name: Set up Python
-      uses: actions/setup-python@v5  # Fix: Changed from actions/interactive-python
+      uses: actions/setup-python@v5
       with:
         python-version: '3.11'
 
-    # 3. Create a clean virtual environment and install packages inside the runner
     - name: Install Project Dependencies
       run: |
         python -m venv .venv
@@ -30,7 +26,6 @@ jobs:
         pip install --upgrade pip
         pip install fastapi uvicorn pytest httpx
 
-    # 4. Execute the automated regression tests
     - name: Run Pytest Regression Suite
       run: |
         source .venv/bin/activate
