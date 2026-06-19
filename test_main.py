@@ -29,3 +29,14 @@ def test_insufficient_funds():
     
     data = response.json()
     assert "Insufficient funds" in data["detail"]
+
+def test_invalid_ticker():
+    """Verify that trying to buy an unsupported ticker fails with a 404 error."""
+    # Send a request to buy 5 shares of Intel (INTC is not in our STOCK_PRICES database)
+    response = client.get("/buy?ticker=INTC&quantity=5")
+    
+    # Assertions: Confirm the system returns a 404 Not Found status code
+    assert response.status_code == 404
+    
+    data = response.json()
+    assert "not found" in data["detail"].lower()
